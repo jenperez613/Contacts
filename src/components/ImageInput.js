@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const readFileAsDataURL = (file) =>
   new Promise((resolve) => {
@@ -17,7 +17,7 @@ const resizeImage = (imageURL, canvas, maxHeight) =>
     const image = new Image();
 
     image.onload = () => {
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext('2d');
 
       if (image.height > maxHeight) {
         image.width *= maxHeight / image.height;
@@ -30,7 +30,7 @@ const resizeImage = (imageURL, canvas, maxHeight) =>
 
       context.drawImage(image, 0, 0, image.width, image.height);
 
-      resolve(canvas.toDataURL("image/jpeg"));
+      resolve(canvas.toDataURL('image/jpeg'));
     };
 
     image.src = imageURL;
@@ -44,15 +44,15 @@ const resizeImage = (imageURL, canvas, maxHeight) =>
 const ImageInput = ({ maxHeight, className, name }) => {
   let fileInput;
 
-  const [value, setValue] = useState("");
-  const [canvas, setCanvas] = useState("");
+  const [value, setValue] = useState('');
+  const [canvas, setCanvas] = useState('');
 
   const style = {
-    position: "relative",
+    position: 'relative',
   };
 
   const handleFormReset = () => {
-    setValue("");
+    setValue('');
   };
 
   const handleFileChange = (event) => {
@@ -65,26 +65,26 @@ const ImageInput = ({ maxHeight, className, name }) => {
         });
       });
     } else {
-      setValue("");
+      setValue('');
     }
   };
 
   useEffect(() => {
-    setCanvas(document.createElement("canvas"));
-    fileInput.form.addEventListener("reset", handleFormReset);
+    setCanvas(document.createElement('canvas'));
+    fileInput.form.addEventListener('reset', handleFormReset);
 
     return () => {
       if (fileInput) {
-        fileInput.form.removeEventListener("reset", handleFormReset);
+        fileInput.form.removeEventListener('reset', handleFormReset);
       }
     };
   }, [fileInput]);
 
   if (value) {
     style.backgroundImage = `url("${value}")`;
-    style.backgroundRepeat = "no-repeat";
-    style.backgroundPosition = "center";
-    style.backgroundSize = "cover";
+    style.backgroundRepeat = 'no-repeat';
+    style.backgroundPosition = 'center';
+    style.backgroundSize = 'cover';
   }
 
   return (
@@ -95,12 +95,13 @@ const ImageInput = ({ maxHeight, className, name }) => {
         type="file"
         onChange={handleFileChange}
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
           opacity: 0,
+          cursor: 'pointer',
         }}
       />
     </div>

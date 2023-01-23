@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import ImageInput from "./ImageInput";
-import serializeForm from "form-serialize";
+import { Link } from 'react-router-dom';
+import ImageInput from './ImageInput';
+import serializeForm from 'form-serialize';
 
 const CreateContact = ({ onCreateContact }) => {
   const handleSubmit = (e) => {
@@ -10,6 +10,7 @@ const CreateContact = ({ onCreateContact }) => {
     if (onCreateContact) {
       onCreateContact(values);
     }
+    console.log('Values:', values);
   };
 
   return (
